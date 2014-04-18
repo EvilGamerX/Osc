@@ -36,6 +36,7 @@ int main(int __argc, char** __argv)
 		case 0: while(1)
 				{
 					time(&now);
+					cout << now << difftime(now, start);
 					cout << sin(2 * M_PI * difftime(now, start)) << endl;
 				}
 				break;
