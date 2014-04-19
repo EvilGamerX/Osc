@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <ctime>
+#include <time.h>
 #include <cmath>
 
 #define _USE_MATH_DEFINES
@@ -19,9 +19,10 @@ int main(int __argc, char** __argv)
 	int waveform, rate, depth;
 	string str(__argv[1]);
 	time_t now, start;
+	clock_t t;
 	
 
-	(str.compare("Triangle") ? (str.compare("Sine") ? (str.compare("Sawtooth") ? waveform = -1 : waveform = 2) : waveform = 1) : waveform = 0);
+	(str.compare("Triangle") ? (str.compare("Sine") ? (str.compare("Sawtooth") ? waveform = -1 : waveform = 2) : waveform = 0) : waveform = 1);
 	rate = atoi(__argv[2]);
 	depth = atoi(__argv[3]);
 	cout << str.compare("Triangle") << "|" << str.compare("Sine") << "|" << str.compare("Sawtooth");
@@ -36,21 +37,21 @@ int main(int __argc, char** __argv)
 		case 0: while(1)
 				{
 					time(&now);
-					cout << now << difftime(now, start);
-					cout << sin(2 * M_PI * difftime(now, start)) << endl;
+					t = clock();
+					cout << depth * sin(2 * M_PI * ((float)t / CLOCKS_PER_SEC) * rate) << endl;
 				}
 				break;
 		case 1:while(1)
 				{
 					cout << "  2";
 					time(&now);
-					cout << abs((now - start) - floor(now - start + .5)) << endl;
+					cout << abs(((float)t / CLOCKS_PER_SEC) * rate) - floor(((float)t / CLOCKS_PER_SEC) * rate) + .5)) << endl;
 				}
 			   break;
 	   case 2:while(1)
 				{
 					time(&now);
-					cout << (now - start) - floor(now - start + .5) << endl;
+					cout << ((float)t / CLOCKS_PER_SEC) * rate) - floor(((float)t / CLOCKS_PER_SEC) * rate) + .5) << endl;
 				}
 			  break;
 	   default: cout << "default";
