@@ -29,7 +29,6 @@ int main(int __argc, char** __argv)
 
 	if(waveform != -1 && rate && depth)
 	{
-		cout <<"1";
 		time(&start);
 		cout << waveform;
 		switch(waveform)
@@ -43,15 +42,16 @@ int main(int __argc, char** __argv)
 				break;
 		case 1:while(1)
 				{
-					cout << "  2";
 					time(&now);
-					cout << abs(((float)t / CLOCKS_PER_SEC) * rate) - floor(((float)t / CLOCKS_PER_SEC) * rate) + .5)) << endl;
+					t = clock();
+					cout << depth * abs((((float)t / CLOCKS_PER_SEC) * rate) - floor((((float)t / CLOCKS_PER_SEC) * rate) + .5)) << endl;
 				}
 			   break;
 	   case 2:while(1)
 				{
 					time(&now);
-					cout << ((float)t / CLOCKS_PER_SEC) * rate) - floor(((float)t / CLOCKS_PER_SEC) * rate) + .5) << endl;
+					t = clock();
+					cout << ((((float)t / CLOCKS_PER_SEC) * rate) - floor((((float)t / CLOCKS_PER_SEC) * rate) + .5)) * depth << endl;
 				}
 			  break;
 	   default: cout << "default";
